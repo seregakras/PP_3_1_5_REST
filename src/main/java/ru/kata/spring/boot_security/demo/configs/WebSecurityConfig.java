@@ -11,7 +11,8 @@ import ru.kata.spring.boot_security.demo.service.userdetail.CustomUserDetailsSer
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {//todo: WARN! depricated (заставят переделать) https://stackoverflow.com/questions/72381114/spring-security-upgrading-the-deprecated-websecurityconfigureradapter-in-spring
+
     private final SuccessUserHandler successUserHandler;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final CustomUserDetailsService customUserDetailsService;
