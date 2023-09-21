@@ -22,15 +22,15 @@ public class UserController {
 
     @GetMapping("")
     public String showUser(Model model, Principal principal) {
-        String userName = principal.getName();
-        if (userName.equals("admin")) {
-            List<User> users = userService.getAll();
-            model.addAttribute("users", users);
-            return "allUsers";
+        String username = principal.getName();
+        if (username.equals("admin@admin.com")) {
+            return "redirect:/login";
         }
-        User user = userService.findByName(userName);
-        model.addAttribute("user", user);
-        return "showUser";
+        User currentUser = userService.findByEmail(username);
+        List<User> users = List.of(currentUser);
+        model.addAttribute("username", username);
+        model.addAttribute("users", users);
+        return "allUsers";
     }
 }
 

@@ -18,6 +18,13 @@ public class User extends GenericModel {
 
     @Column(unique = true, nullable = false)
     private String name;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
     private String password;
     private int age;
     private Sex sex;
@@ -34,10 +41,13 @@ public class User extends GenericModel {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + super.getId() +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", age=" + age +
                 ", sex=" + sex +
+                ", roles=" + roles +
                 '}';
     }
 }

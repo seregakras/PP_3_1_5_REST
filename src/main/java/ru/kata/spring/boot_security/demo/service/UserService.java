@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.model.Role;
+import ru.kata.spring.boot_security.demo.model.Sex;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 
@@ -25,6 +26,9 @@ public class UserService extends GenericService<User> {
     public User findByName(String name) {
         return userRepository.findUserByName(name);
     }
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
     @Override
     public void create(User user) {
@@ -36,8 +40,20 @@ public class UserService extends GenericService<User> {
 
     @PostConstruct
     public void createRoleUser() {
+        if (roleService.findByTitle("ADMIN") == null) {
+            roleService.create(new Role("ADMIN", null));
+        }
         if (roleService.findByTitle("USER") == null) {
             roleService.create(new Role("USER", null));
+        }
+        if (userRepository.findUserByName("admin") == null) {
+            userRepository.save(new User("admin",
+                    "admin",
+                    "admin@admin.com",
+                    "$2a$10$IRAa2L42Bz011.za0K6QrevQX2cGHIsbfouKkGdP9OU6S6klTsJn6",
+                    43,
+                    Sex.MALE,
+                    List.of(roleService.findByTitle("ADMIN"))));
         }
     }
 }
