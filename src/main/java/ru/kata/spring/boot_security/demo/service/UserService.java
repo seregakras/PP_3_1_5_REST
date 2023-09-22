@@ -32,8 +32,6 @@ public class UserService extends GenericService<User> {
 
     @Override
     public void create(User user) {
-        Role userRole = roleService.findByTitle("USER");
-        user.setRoles(List.of(userRole));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
