@@ -1,0 +1,6 @@
+.wrapper .container-fluid .col {
+    min-height: 100vh;
+}
+#modal-delete-content input,option {
+    background-color: #c7c8c9;
+}

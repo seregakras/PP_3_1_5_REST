@@ -22,12 +22,14 @@ public class User extends GenericModel {
     @Column(name = "last_name")
     private String lastName;
 
+    private int age;
+
     @Column(unique = true, nullable = false)
     private String email;
 
     private String password;
-    private int age;
-    private Sex sex;
+
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -43,10 +45,9 @@ public class User extends GenericModel {
         return "User{" +
                 "name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", age=" + age +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", age=" + age +
-                ", sex=" + sex +
                 ", roles=" + roles +
                 '}';
     }

@@ -35,7 +35,7 @@
 
             <table class="table table-responsive" style="border-collapse: collapse">
                 <tr>
-                    <td style="border: 1px solid #c7c8c9">
+                    <td style="border: 1px solid #c7c8c9; background-color: #f2f2f2">
                         <div sec:authorize="#authentication.getName().equals('admin@admin.com')"
                              style="margin: 5px; padding-top: 10px"><h5>All users</h5></div>
                         <div sec:authorize="!#authentication.getName().equals('admin@admin.com')"
@@ -79,16 +79,291 @@
                                         </div>
                                     </td>
                                     <td sec:authorize="#authentication.getName().equals('admin@admin.com')">
-                                        <a th:href="'/admin/update-user/' + ${user.getId()}"
-                                           class="btn btn-secondary btn-info"
-                                           style="color: white"
-                                           role="button"
-                                           aria-disabled="true">Edit</a></td>
+                                        <button type="button" class="btn btn-info"
+                                                data-bs-toggle="modal" style="color: white"
+                                                th:data-bs-target="'#edit' + ${user.getId()}">Edit
+                                        </button>
+                                        <!-- *********************************************************************************-->
+                                        <!-- Modal edit window-->
+                                        <!-- *********************************************************************************-->
+                                        <div class="modal fade" th:id="'edit' + ${user.getId()}"
+                                             tabindex="-1" aria-labelledby="editModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5"
+                                                            id="editModalLabel">Edit user</h1>
+                                                        <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div style="padding-left: 15px">
+                                                            <div style="display:flex; align-items: center;
+                                                            justify-content: center">
+                                                                <form method="POST"
+                                                                      th:action="@{/admin/update-user}"
+                                                                      object="edit-user"
+                                                                      style="width: 70vh; text-align: center">
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>ID</b></h6>
+                                                                                <input name="id"
+                                                                                       type="text"
+                                                                                       class="form-control"
+                                                                                       id="edit-modal-id"
+                                                                                       th:value="${user.getId()}"
+                                                                                       readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>First
+                                                                                    name</b></h6>
+                                                                                <input name="name"
+                                                                                       type="text"
+                                                                                       th:value="${user.getName()}"
+                                                                                       class="form-control"
+                                                                                       id="edit-modal-name"
+                                                                                       placeholder="Name">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Last name</b>
+                                                                                </h6>
+                                                                                <input name="lastName"
+                                                                                       type="text"
+                                                                                       th:value="${user.getLastName()}"
+                                                                                       class="form-control"
+                                                                                       id="edit-modal-lastName"
+                                                                                       placeholder="Last name">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 mb-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Age</b></h6>
+                                                                                <input name="age"
+                                                                                       type="text"
+                                                                                       th:value="${user.getAge()}"
+                                                                                       class="form-control"
+                                                                                       id="edit-modal-age"
+                                                                                       placeholder="Age">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Email</b>
+                                                                                </h6>
+                                                                                <input name="email"
+                                                                                       type="text"
+                                                                                       th:value="${user.getEmail()}"
+                                                                                       class="form-control"
+                                                                                       id="edit-modal-email"
+                                                                                       placeholder="Email"
+                                                                                       readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Password</b>
+                                                                                </h6>
+                                                                                <input name="password"
+                                                                                       type="password"
+                                                                                       class="form-control"
+                                                                                       id="edit-modal-password"
+                                                                                       placeholder="Password">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Role</b></h6>
+                                                                                <select class="form-select"
+                                                                                        name="user-roles"
+                                                                                        id="edit-modal-user-roles"
+                                                                                        style="padding: 0; overflow: hidden"
+                                                                                        multiple
+                                                                                        required>
+                                                                                    <option th:each="role : ${new_roles}"
+                                                                                            th:value=" ${role.getId()}"
+                                                                                            th:text="${role.getTitle()}"></option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div style="display:flex; align-items: center;
+                                                                       justify-content: right">
+                                                                        <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal"
+                                                                                style="margin-right: 5px">
+                                                                            Close
+                                                                        </button>
+                                                                        <button type="submit"
+                                                                                class="btn btn-primary">
+                                                                            Edit
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- *****************************************************************************-->
+
+                                    </td>
                                     <td sec:authorize="#authentication.getName().equals('admin@admin.com')">
-                                        <a th:href="'/admin/delete-user/' + ${user.getId()}"
-                                           class="btn btn-secondary btn-danger"
-                                           role="button"
-                                           aria-disabled="true">Delete</a>
+                                        <button type="button" class="btn btn-danger"
+                                                data-bs-toggle="modal"
+                                                th:data-bs-target="'#delete' + ${user.getId()}">
+                                            Delete
+                                        </button>
+
+                                        <!-- ********************************************************************-->
+                                        <!-- Modal delete window-->
+                                        <!-- ********************************************************************-->
+                                        <div class="modal fade" th:id="'delete' + ${user.getId()}"
+                                             tabindex="-1" aria-labelledby="deleteModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5"
+                                                            id="deleteModalLabel">Delete user</h1>
+                                                        <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body" id="modal-delete-content">
+                                                        <div style="padding-left: 15px">
+                                                            <div style="display:flex; align-items: center;
+                                                            justify-content: center">
+                                                                <form method="POST"
+                                                                      th:action="@{/admin/delete-user}"
+                                                                      object="delete-user"
+                                                                      style="width: 70vh; text-align: center">
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>ID</b></h6>
+                                                                    <input name="id" type="text"
+                                                                           th:value="${user.getId()}"
+                                                                           class="form-control"
+                                                                           id="delete-id" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>First name</b></h6>
+                                                                                <input name="name"
+                                                                                       type="text"
+                                                                                       th:value="${user.getName()}"
+                                                                                       class="form-control"
+                                                                                       id="delete-modal-name"
+                                                                                       placeholder="Name"
+                                                                                       readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Last name</b></h6>
+                                                                                <input name="lastName"
+                                                                                       type="text"
+                                                                                       th:value="${user.getLastName()}"
+                                                                                       class="form-control"
+                                                                                       id="delete-modal-lastName"
+                                                                                       placeholder="Last name"
+                                                                                       readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 mb-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Age</b></h6>
+                                                                                <input name="age"
+                                                                                       type="text"
+                                                                                       th:value="${user.getAge()}"
+                                                                                       class="form-control"
+                                                                                       id="delete-modal-age"
+                                                                                       placeholder="Age"
+                                                                                       readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Email</b></h6>
+                                                                                <input name="email"
+                                                                                       type="text"
+                                                                                       th:value="${user.getEmail()}"
+                                                                                       class="form-control"
+                                                                                       id="delete-modal-email"
+                                                                                       placeholder="Email"
+                                                                                       readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-3 row g-2">
+                                                                        <div class="col-md">
+                                                                            <div class="form-floating">
+                                                                                <h6><b>Role</b></h6>
+                                                                                <select class="form-select"
+                                                                                        name="user-roles"
+                                                                                        id="delete-modal-user-roles"
+                                                                                        style="padding: 0"
+                                                                                        multiple>
+                                                                                    <option th:each="role : ${new_roles}"
+                                                                                            th:value=" ${role.getId()}"
+                                                                                            th:text="${role.getTitle()}"></option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div style="display:flex; align-items: center;
+                                                                       justify-content: right">
+                                                                        <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal"
+                                                                                style="margin-right: 5px">
+                                                                            Close
+                                                                        </button>
+                                                                        <button type="submit"
+                                                                                class="btn btn-danger">
+                                                                            Delete
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--*******************************************************************-->
                                     </td>
                                 </tr>
                                 </tbody>
@@ -98,24 +373,29 @@
                 </tr>
             </table>
         </div>
+        <!--        ***********************************************************************************************-->
+        <!--        Add user tab-->
+        <!--        ***********************************************************************************************-->
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
              aria-labelledby="profile-tab" tabindex="0">
             <table class="table table-responsive" style="border-collapse: collapse">
                 <tr>
-                    <td style="border: 1px solid #c7c8c9">
-                        <div style="margin: 5px; padding-top: 10px"><h5>Add user</h5></div>
+                    <td style="border: 1px solid #c7c8c9; background-color: #f2f2f2">
+                        <div style="margin: 5px; padding-top: 10px"><h5>
+                            Add new user</h5></div>
                     </td>
                 </tr>
                 <tr>
-                    <td style="border: 1px solid #c7c8c9">
-                        <form method="POST" th:action="@{/admin/add-user}" object="user">
+                    <td style="border: 1px solid #c7c8c9; display:flex; align-items: center; justify-content: center">
+                        <form method="POST" th:action="@{/admin/add-user}" object="add-user"
+                              style="width: 50vh; text-align: center">
                             <div class="mt-3 row g-2">
                                 <div class="col-md">
                                     <div class="form-floating">
+                                        <h6><b>First name</b></h6>
                                         <input name="name" type="text" class="form-control"
-                                               id="name"
+                                               id="add-name"
                                                placeholder="Name" required>
-                                        <label for="name">Name</label>
                                         <div class="invalid-feedback">Обязательное поле для
                                             заполнения
                                         </div>
@@ -125,10 +405,36 @@
                             <div class="mt-3 row g-2">
                                 <div class="col-md">
                                     <div class="form-floating">
+                                        <h6><b>Last name</b></h6>
                                         <input name="lastName" type="text" class="form-control"
-                                               id="lastName"
+                                               id="add-lastName"
                                                placeholder="Last name" required>
-                                        <label for="lastName">Last name</label>
+                                        <div class="invalid-feedback">Обязательное поле для
+                                            заполнения
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 mb-3 row g-2">
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                        <h6><b>Age</b></h6>
+                                        <input name="age" type="number" class="form-control"
+                                               id="add-age"
+                                               placeholder="Age" required>
+                                        <div class="invalid-feedback">Обязательное поле для
+                                            заполнения
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 mb-3 row g-2">
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                        <h6><b>Email</b></h6>
+                                        <input name="email" type="text" class="form-control"
+                                               id="add-email"
+                                               placeholder="E-mail" required>
                                         <div class="invalid-feedback">Обязательное поле для
                                             заполнения
                                         </div>
@@ -138,60 +444,24 @@
                             <div class="mt-3 row g-2">
                                 <div class="col-md">
                                     <div class="form-floating">
+                                        <h6><b>Password</b></h6>
                                         <input name="password" type="password" class="form-control"
-                                               id="password"
+                                               id="add-password"
                                                placeholder="Password" required>
-                                        <label for="password">Password</label>
                                         <div class="invalid-feedback">Обязательное поле для
                                             заполнения
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3 mb-3 row g-2">
+                            <div class="mt-3 row g-2">
                                 <div class="col-md">
                                     <div class="form-floating">
-                                        <input name="age" type="number" class="form-control"
-                                               id="age"
-                                               placeholder="Age" required>
-                                        <label for="age">Age</label>
-                                        <div class="invalid-feedback">Обязательное поле для
-                                            заполнения
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-3 mb-3 row g-2">
-                                <div class="col-md">
-                                    <div class="form-floating">
-                                        <input name="email" type="text" class="form-control"
-                                               id="email"
-                                               placeholder="E-mail" required>
-                                        <label for="email">E-mail</label>
-                                        <div class="invalid-feedback">Обязательное поле для
-                                            заполнения
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <label for="sex">Choose sex:</label>
-                            <div class="row g-2">
-                                <div class="col-md">
-                                    <div class="form-floating">
-                                        <select class="form-select" name="sex" id="sex" required>
-                                            <option th:each="sex : ${sexList}"
-                                                    th:value=" ${sex}"
-                                                    th:text="${sex.getDescription()}"></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <label for="user-roles">Choose roles:</label>
-                            <div class="row g-2">
-                                <div class="col-md">
-                                    <div class="form-floating">
+                                        <h6><b>Role</b></h6>
                                         <select class="form-select" name="user-roles"
-                                                id="user-roles" multiple required>
+                                                id="add-user-roles"
+                                                style="padding: 0" multiple
+                                                required>
                                             <option th:each="role : ${new_roles}"
                                                     th:value=" ${role.getId()}"
                                                     th:text="${role.getTitle()}"></option>
@@ -199,12 +469,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3 row g-2">
-                                <button type="submit" class="btn btn-primary"
-                                        onclick="validateForm()">Add
-                                </button>
-                                <button type="button" class="btn btn-secondary"
-                                        onclick="window.history.back()">Back
+                            <div class="mt-3 row g-2"
+                                 style="display:flex; align-items: center; justify-content: center">
+                                <button type="submit" class="btn btn-success"
+                                        style="width: max-content"
+                                        onclick="validateForm()">Add new user
                                 </button>
                             </div>
                         </form>
@@ -213,6 +482,7 @@
             </table>
         </div>
     </div>
+    <!--    ***************************************************************************************************-->
 </div>
 </body>
 </html>
