@@ -34,6 +34,12 @@ public class UserService extends GenericService<User> {
         userRepository.save(user);
     }
 
+    @Override
+    public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
+
     @PostConstruct
     public void createRoleUser() {
         if (roleService.findByTitle("ADMIN") == null) {

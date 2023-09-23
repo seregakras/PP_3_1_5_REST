@@ -42,13 +42,6 @@ public class AdminController {
         return "allUsers";
     }
 
-    @GetMapping("{id}")
-    public String showUser(Model model, @PathVariable Long id) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        return "showUser";
-    }
-
     @PostMapping("add-user")
     public String addUser(@ModelAttribute("add-user") User user,
                           @RequestParam("user-roles") List<Long> roleIds,
