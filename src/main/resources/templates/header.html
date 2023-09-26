@@ -1,0 +1,19 @@
+<div xmlns:th="http://thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+     th:fragment="header">
+    <nav class="navbar navbar-expand-lg" style="background: #343a40">
+        <div class="container-fluid" style="color: white; float: right">
+            <form sec:authorize="isAuthenticated()" class="d-flex" type="search"
+                  th:text="${username} + ' with roles: ' + ${roles}">
+            </form>
+            <div sec:authorize="!isAuthenticated()" class="d-flex" role="search">
+                <a style="text-decoration: none; color: #94948c; text-align: right" href="/login"
+                   aria-disabled="true">Login</a>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="d-flex" role="search">
+                <a style="text-decoration: none; color: #94948c; text-align: right" href="/logout"
+                   aria-disabled="true">Logout</a>
+            </div>
+        </div>
+    </nav>
+</div>

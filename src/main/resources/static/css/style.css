@@ -1,0 +1,107 @@
+/*Основное содержимое:*/
+
+.wrapper .container-fluid .col {
+    background-color: #f2f2f2;
+    padding-top: 10px;
+    max-height: min-content;
+}
+
+.wrapper .container-fluid .col-5 {
+    width: 15%;
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*Стиль кнопок*/
+
+.btn-info {
+    color: white;
+}
+
+/*Содержимое страниц ошибок:*/
+
+.error-content {
+    padding-left: 15px;
+}
+
+/*Боковое меню:*/
+
+.nav-pills a {
+    width: 100vh;
+}
+
+/*Содержимое вкладок (заголовок и таблица):*/
+
+#table-wrapper {
+    border-collapse: collapse;
+}
+
+#row-header {
+    background-color: #f2f2f2;
+}
+
+#row-content {
+    background-color: white;
+    padding: 10px;
+    margin: 0;
+}
+
+.tab-content .td-main {
+    border: 1px solid #c7c8c9;
+    margin: 5px;
+    padding-top: 10px;
+}
+
+#td-add-user-form {
+    border: 1px solid #c7c8c9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#td-add-user-form form {
+    width: 50vh;
+    text-align: center;
+}
+
+#button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#td-add-user-form button {
+    width: max-content;
+}
+
+/*Модальные окна:*/
+
+.modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body form {
+    width: 70vh;
+    text-align: center;
+}
+
+.bottom-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.bottom-buttons .btn-secondary {
+    margin-right: 5px;
+}
+
+#modal-edit-content #edit-modal-id {
+    background-color: #c7c8c9;
+}
+
+#modal-delete-content input, #modal-delete-content option {
+    background-color: #c7c8c9;
+}

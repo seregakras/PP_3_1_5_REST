@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
@@ -22,15 +23,21 @@ public class UserController {
 
     @GetMapping("")
     public String showUser(Model model, Principal principal) {
-        String userName = principal.getName();
-        if (userName.equals("admin")) {
-            List<User> users = userService.getAll();
-            model.addAttribute("users", users);
-            return "allUsers";
+        String username = principal.getName();
+        if (username.equals("admin@admin.com")) {
+            return "redirect:/login";
         }
-        User user = userService.findByName(userName);
-        model.addAttribute("user", user);
-        return "showUser";
+        User currentUser = userService.findByEmail(username);
+        List<Role> roles = userService.findByEmail(username).getRoles();
+        StringBuilder roleNames = new StringBuilder();
+        for (Role role : roles) {
+            roleNames.append(role.getTitle()).append(" ");
+        }
+        List<User> users = List.of(currentUser);
+        model.addAttribute("username", username);
+        model.addAttribute("users", users);
+        model.addAttribute("roles", roleNames.toString());
+        return "allUsers";
     }
 }
 

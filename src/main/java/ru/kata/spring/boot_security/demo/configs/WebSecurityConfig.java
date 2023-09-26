@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import ru.kata.spring.boot_security.demo.service.userdetail.CustomUserDetailsService;
@@ -19,7 +20,8 @@ public class WebSecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
 
 
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, BCryptPasswordEncoder bCryptPasswordEncoder, CustomUserDetailsService customUserDetailsService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, BCryptPasswordEncoder bCryptPasswordEncoder,
+                             CustomUserDetailsService customUserDetailsService) {
         this.successUserHandler = successUserHandler;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.customUserDetailsService = customUserDetailsService;
@@ -28,20 +30,21 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
                 .authorizeRequests()
-                .antMatchers("/", "/index").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().successHandler(successUserHandler)
-                .permitAll()
-                .and()
+                .formLogin((form) -> form.loginPage("/login")
+                        .successHandler(successUserHandler)
+                        .permitAll()
+                )
                 .exceptionHandling().accessDeniedPage("/accessDenied")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
-                .deleteCookies("JSESSIONID")
-                .permitAll();
+                .deleteCookies("JSESSIONID");
 
         return http.build();
     }

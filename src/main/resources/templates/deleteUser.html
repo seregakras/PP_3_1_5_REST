@@ -1,0 +1,93 @@
+<div xmlns:th="http://thymeleaf.org"
+     th:fragment="delete-user">
+    <div class="modal fade" th:id="'delete' + ${user.getId()}" tabindex="-1"
+         aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Delete user</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-delete-content">
+                    <form method="POST" th:action="@{/admin/delete-user}" object="delete-user">
+                        <div class="mt-3 row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <h6><b>ID</b></h6>
+                                    <input name="id" type="text" th:value="${user.getId()}"
+                                           class="form-control" id="delete-id" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <h6><b>First name</b></h6>
+                                    <input name="name" type="text" th:value="${user.getName()}"
+                                           class="form-control" id="delete-modal-name"
+                                           placeholder="Name" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <h6><b>Last name</b></h6>
+                                    <input name="lastName" type="text"
+                                           th:value="${user.getLastName()}"
+                                           class="form-control" id="delete-modal-lastName"
+                                           placeholder="Last name" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-3 row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <h6><b>Age</b></h6>
+                                    <input name="age" type="text" th:value="${user.getAge()}"
+                                           class="form-control" id="delete-modal-age"
+                                           placeholder="Age"
+                                           readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <h6><b>Email</b></h6>
+                                    <input name="email" type="text" th:value="${user.getEmail()}"
+                                           class="form-control" id="delete-modal-email"
+                                           placeholder="Email" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <h6><b>Role</b></h6>
+                                    <select class="form-select" name="user-roles"
+                                            id="delete-modal-user-roles" style="padding: 0"
+                                            multiple>
+                                        <option th:each="role : ${new_roles}"
+                                                th:value=" ${role.getId()}"
+                                                th:text="${role.getTitle()}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="bottom-buttons">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-danger">
+                                Delete
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

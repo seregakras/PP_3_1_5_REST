@@ -18,9 +18,18 @@ public class User extends GenericModel {
 
     @Column(unique = true, nullable = false)
     private String name;
-    private String password;
+
+    @Column(name = "last_name")
+    private String lastName;
+
     private int age;
-    private Sex sex;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    private String password;
+
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -34,10 +43,12 @@ public class User extends GenericModel {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + super.getId() +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", sex=" + sex +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }
