@@ -29,14 +29,14 @@ public class UserController {
         }
         User currentUser = userService.findByEmail(username);
         List<Role> roles = userService.findByEmail(username).getRoles();
-        String roleNames = "";
-        for (Role role: roles) {
-            roleNames += role.getTitle() + " ";
+        StringBuilder roleNames = new StringBuilder();
+        for (Role role : roles) {
+            roleNames.append(role.getTitle()).append(" ");
         }
         List<User> users = List.of(currentUser);
         model.addAttribute("username", username);
         model.addAttribute("users", users);
-        model.addAttribute("roles", roleNames);
+        model.addAttribute("roles", roleNames.toString());
         return "allUsers";
     }
 }

@@ -2,17 +2,17 @@
      th:fragment="add-user">
     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
          aria-labelledby="profile-tab" tabindex="0">
-        <table class="table table-responsive" style="border-collapse: collapse">
+        <table class="table table-responsive" id="table-wrapper">
             <tr>
-                <td style="border: 1px solid #c7c8c9; background-color: #f2f2f2">
-                    <div style="margin: 5px; padding-top: 10px"><h5>
-                        Add new user</h5></div>
+                <td class="td-main" id="row-header">
+                    <div>
+                        <h5>Add new user</h5>
+                    </div>
                 </td>
             </tr>
             <tr>
-                <td style="border: 1px solid #c7c8c9; display:flex; align-items: center; justify-content: center">
-                    <form method="POST" th:action="@{/admin/add-user}" object="add-user"
-                          style="width: 50vh; text-align: center">
+                <td id="td-add-user-form">
+                    <form method="POST" th:action="@{/admin/add-user}" object="add-user">
                         <div class="mt-3 row g-2">
                             <div class="col-md">
                                 <div class="form-floating">
@@ -93,11 +93,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-3 row g-2"
-                             style="display:flex; align-items: center; justify-content: center">
-                            <button type="submit" class="btn btn-success"
-                                    style="width: max-content"
-                                    onclick="validateForm()">Add new user
+                        <div class="mt-3 row g-2" id="button-wrapper">
+                            <button type="submit" class="btn btn-success" onclick="validateForm()">Add new user
                             </button>
                         </div>
                     </form>

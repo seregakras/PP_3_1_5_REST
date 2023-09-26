@@ -5,10 +5,8 @@
         <div sec:authorize="#authentication.getName().equals('admin@admin.com')"
              class="nav nav-pills" role="tablist"
              aria-orientation="vertical">
-            <a class="nav-link active" href="/admin"
-               aria-selected="true">Admin</a>
-            <a class="nav-link" href="/user/"
-               aria-selected="false">User</a>
+            <a class="nav-link active" href="/admin" aria-selected="true">Admin</a>
+            <a class="nav-link" href="/user/" aria-selected="false">User</a>
         </div>
         <div sec:authorize="!#authentication.getName().equals('admin@admin.com')"
              class="nav nav-pills" id="v-pills-tab" role="tablist"

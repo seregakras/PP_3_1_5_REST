@@ -50,7 +50,7 @@ public class UserService extends GenericService<User> {
         }
         if (userRepository.findUserByName("admin") == null) {
             List<Role> rolesAdmin = new ArrayList<>(Arrays.asList(roleService.findByTitle("ADMIN"),
-                                                    roleService.findByTitle("USER")));
+                    roleService.findByTitle("USER")));
             userRepository.save(new User("admin",
                     "admin",
                     43,

@@ -30,78 +30,80 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
              aria-labelledby="home-tab" tabindex="0">
-            <table class="table table-responsive" style="border-collapse: collapse">
+            <table class="table table-responsive" id="table-wrapper">
                 <tr>
                     <td class="td-main" id="row-header">
-                        <div sec:authorize="#authentication.getName().equals('admin@admin.com')"
-                             style="margin: 5px; padding-top: 10px"><h5>All users</h5></div>
-                        <div sec:authorize="!#authentication.getName().equals('admin@admin.com')"
-                             style="margin: 5px"><h5>About user</h5></div>
+                        <div sec:authorize="#authentication.getName().equals('admin@admin.com')">
+                            <h5>All users</h5>
+                        </div>
+                        <div sec:authorize="!#authentication.getName().equals('admin@admin.com')">
+                            <h5>About user</h5>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-main" id="row-content">
-                            <table class="table table-striped">
-                                <thead>
-                                <hr>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">First name</th>
-                                    <th scope="col">Last name</th>
-                                    <th scope="col">Age</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col"
-                                        sec:authorize="#authentication.getName().equals('admin@admin.com')">
-                                        Edit
-                                    </th>
-                                    <th scope="col"
-                                        sec:authorize="#authentication.getName().equals('admin@admin.com')">
+                        <table class="table table-striped">
+                            <thead>
+                            <hr>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">First name</th>
+                                <th scope="col">Last name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col"
+                                    sec:authorize="#authentication.getName().equals('admin@admin.com')">
+                                    Edit
+                                </th>
+                                <th scope="col"
+                                    sec:authorize="#authentication.getName().equals('admin@admin.com')">
+                                    Delete
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user : ${users}">
+                                <td th:text="${user.getId()}"></td>
+                                <td th:text="${user.getName()}"></td>
+                                <td th:text="${user.getLastName()}"></td>
+                                <td th:text="${user.getAge()}"></td>
+                                <td th:text="${user.getEmail()}"></td>
+                                <td>
+                                    <div style="float: left; margin-right: 5px"
+                                         th:each="role : ${user.getRoles()}">
+                                        <p th:text="${role.getTitle()}"></p>
+                                    </div>
+                                </td>
+                                <td sec:authorize="#authentication.getName().equals('admin@admin.com')">
+                                    <button type="button" class="btn btn-info"
+                                            data-bs-toggle="modal"
+                                            th:data-bs-target="'#edit' + ${user.getId()}">Edit
+                                    </button>
+                                    <!-- ******************************************************* -->
+                                    <!-- Modal edit window-->
+                                    <!-- ******************************************************* -->
+                                    <div th:insert="~{editUser :: edit-user}"></div>
+                                    <!-- ******************************************************* -->
+
+                                </td>
+                                <td sec:authorize="#authentication.getName().equals('admin@admin.com')">
+                                    <button type="button" class="btn btn-danger"
+                                            data-bs-toggle="modal"
+                                            th:data-bs-target="'#delete' + ${user.getId()}">
                                         Delete
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="user : ${users}">
-                                    <td th:text="${user.getId()}"></td>
-                                    <td th:text="${user.getName()}"></td>
-                                    <td th:text="${user.getLastName()}"></td>
-                                    <td th:text="${user.getAge()}"></td>
-                                    <td th:text="${user.getEmail()}"></td>
-                                    <td>
-                                        <div style="float: left; margin-right: 5px"
-                                             th:each="role : ${user.getRoles()}">
-                                            <p th:text="${role.getTitle()}"></p>
-                                        </div>
-                                    </td>
-                                    <td sec:authorize="#authentication.getName().equals('admin@admin.com')">
-                                        <button type="button" class="btn btn-info"
-                                                data-bs-toggle="modal" style="color: white"
-                                                th:data-bs-target="'#edit' + ${user.getId()}">Edit
-                                        </button>
-                                        <!-- ******************************************************* -->
-                                        <!-- Modal edit window-->
-                                        <!-- ******************************************************* -->
-                                        <div th:insert="~{editUser :: edit-user}"></div>
-                                        <!-- ******************************************************* -->
+                                    </button>
 
-                                    </td>
-                                    <td sec:authorize="#authentication.getName().equals('admin@admin.com')">
-                                        <button type="button" class="btn btn-danger"
-                                                data-bs-toggle="modal"
-                                                th:data-bs-target="'#delete' + ${user.getId()}">
-                                            Delete
-                                        </button>
-
-                                        <!-- ******************************************************* -->
-                                        <!-- Modal delete window-->
-                                        <!-- ******************************************************* -->
-                                        <div th:insert="~{deleteUser :: delete-user}"></div>
-                                        <!--******************************************************** -->
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                    <!-- ******************************************************* -->
+                                    <!-- Modal delete window-->
+                                    <!-- ******************************************************* -->
+                                    <div th:insert="~{deleteUser :: delete-user}"></div>
+                                    <!--******************************************************** -->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </td>
                 </tr>
             </table>

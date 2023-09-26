@@ -20,7 +20,8 @@ public class WebSecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
 
 
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, BCryptPasswordEncoder bCryptPasswordEncoder, CustomUserDetailsService customUserDetailsService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, BCryptPasswordEncoder bCryptPasswordEncoder,
+                             CustomUserDetailsService customUserDetailsService) {
         this.successUserHandler = successUserHandler;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.customUserDetailsService = customUserDetailsService;

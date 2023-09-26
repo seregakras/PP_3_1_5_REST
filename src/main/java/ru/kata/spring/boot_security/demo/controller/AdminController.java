@@ -31,13 +31,13 @@ public class AdminController {
         List<User> users = userService.getAll();
         String username = principal.getName();
         List<Role> roles = userService.findByEmail(username).getRoles();
-        String roleNames = "";
-        for (Role role: roles) {
-            roleNames += role.getTitle() + " ";
+        StringBuilder roleNames = new StringBuilder();
+        for (Role role : roles) {
+            roleNames.append(role.getTitle()).append(" ");
         }
         model.addAttribute("username", username);
         model.addAttribute("users", users);
-        model.addAttribute("roles", roleNames);
+        model.addAttribute("roles", roleNames.toString());
         model.addAttribute("new_roles", newRoles);
         return "allUsers";
     }
