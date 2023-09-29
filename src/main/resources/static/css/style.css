@@ -1,16 +1,12 @@
 /*Основное содержимое:*/
 
-.wrapper .container-fluid .col {
-    background-color: #f2f2f2;
-    padding-top: 10px;
-    max-height: min-content;
+#content {
+    margin: 0;
+    padding: 0;
 }
 
-.wrapper .container-fluid .col-5 {
-    width: 15%;
-    padding-top: 10px;
-    padding-left: 0;
-    padding-right: 0;
+.tab-content {
+    width: 100%;
 }
 
 /*Стиль кнопок*/
@@ -25,13 +21,51 @@
     padding-left: 15px;
 }
 
-/*Боковое меню:*/
+.error-content > p {
+    color: red;
+    font-weight: bold;
+}
 
-.nav-pills a {
-    width: 100vh;
+/*Верхняя навигационная панель*/
+
+.navbar.navbar-expand-lg {
+    background: #343a40;
+}
+
+.navbar.navbar-expand-lg a {
+    color: #94948c;
+    text-decoration: none;
+    text-align: right;
+}
+
+.navbar-expand-lg form {
+    color: white;
+    float: right;
+}
+
+/*Боковые вкладки*/
+
+div.nav.nav-pills.flex-column.me-3 {
+    margin-right: 0 !important;
+    width: 20%;
+    padding-top: 10px;
+}
+
+button.nav-link {
+    text-align: left;
 }
 
 /*Содержимое вкладок (заголовок и таблица):*/
+
+.tab-pane {
+    padding: 20px;
+    background-color: #f2f2f2;
+    min-height: 100vh;
+}
+
+#home-tab-pane {
+    padding: 0;
+}
 
 #table-wrapper {
     border-collapse: collapse;
@@ -43,7 +77,11 @@
 
 #row-content {
     background-color: white;
-    padding: 10px;
+    margin: 0;
+}
+
+#myTabContent {
+    padding: 0;
     margin: 0;
 }
 

@@ -22,12 +22,9 @@
 </head>
 <body>
 <main class="wrapper">
-    <div th:replace="~{header :: header}"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-5" th:insert="~{sidebar::sidebar}"></div>
-            <div class="col" layout:fragment="content"></div>
-        </div>
+    <div id="header" th:replace="~{header :: header}"></div>
+    <div id="content" class="container-fluid">
+            <div layout:fragment="content"></div>
     </div>
 </main>
 </body>

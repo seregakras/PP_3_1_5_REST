@@ -7,17 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.webjars.NotFoundException;
 
-import java.security.Principal;
-
 @Controller
 @RequestMapping("/")
 public class MainController {
 
     @GetMapping("")
-    public String viewIndex(Model model, Principal principal) {
-        String username = (principal == null) ? "Гость" : principal.getName();
-        model.addAttribute("username", username);
-        return "index";
+    public String index() {
+        return "login";
     }
 
     @GetMapping("accessDenied")

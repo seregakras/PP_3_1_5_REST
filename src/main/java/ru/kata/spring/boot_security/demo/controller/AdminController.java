@@ -29,13 +29,14 @@ public class AdminController {
     public String viewUsers(Model model, Principal principal) {
         List<Role> newRoles = roleService.getAll();
         List<User> users = userService.getAll();
-        String username = principal.getName();
-        List<Role> roles = userService.findByEmail(username).getRoles();
+        User currentUser = userService.findByEmail(principal.getName());
+        List<Role> roles = currentUser.getRoles();
         StringBuilder roleNames = new StringBuilder();
         for (Role role : roles) {
             roleNames.append(role.getTitle()).append(" ");
         }
-        model.addAttribute("username", username);
+        model.addAttribute("username", principal.getName());
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("users", users);
         model.addAttribute("roles", roleNames.toString());
         model.addAttribute("new_roles", newRoles);
