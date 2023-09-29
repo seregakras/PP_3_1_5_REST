@@ -1,105 +1,103 @@
 <div xmlns:th="http://thymeleaf.org"
      th:fragment="add-user">
-    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-         aria-labelledby="profile-tab" tabindex="0">
-        <table class="table table-responsive" id="table-wrapper">
-            <tr>
-                <td class="td-main" id="row-header">
-                    <div>
-                        <h5>Add new user</h5>
+    <table class="table table-responsive" id="table-wrapper">
+        <tr>
+            <td class="td-main" id="row-header">
+                <div>
+                    <h5>Add new user</h5>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td id="td-add-user-form">
+                <form method="POST" th:action="@{/admin/add-user}" object="add-user">
+                    <div class="mt-3 row g-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <h6><b>First name</b></h6>
+                                <input name="name" type="text" class="form-control"
+                                       id="add-name"
+                                       placeholder="Name" required>
+                                <div class="invalid-feedback">Обязательное поле для
+                                    заполнения
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td id="td-add-user-form">
-                    <form method="POST" th:action="@{/admin/add-user}" object="add-user">
-                        <div class="mt-3 row g-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <h6><b>First name</b></h6>
-                                    <input name="name" type="text" class="form-control"
-                                           id="add-name"
-                                           placeholder="Name" required>
-                                    <div class="invalid-feedback">Обязательное поле для
-                                        заполнения
-                                    </div>
+                    <div class="mt-3 row g-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <h6><b>Last name</b></h6>
+                                <input name="lastName" type="text" class="form-control"
+                                       id="add-lastName"
+                                       placeholder="Last name" required>
+                                <div class="invalid-feedback">Обязательное поле для
+                                    заполнения
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-3 row g-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <h6><b>Last name</b></h6>
-                                    <input name="lastName" type="text" class="form-control"
-                                           id="add-lastName"
-                                           placeholder="Last name" required>
-                                    <div class="invalid-feedback">Обязательное поле для
-                                        заполнения
-                                    </div>
+                    </div>
+                    <div class="mt-3 mb-3 row g-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <h6><b>Age</b></h6>
+                                <input name="age" type="number" class="form-control"
+                                       id="add-age"
+                                       placeholder="Age" required>
+                                <div class="invalid-feedback">Обязательное поле для
+                                    заполнения
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-3 mb-3 row g-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <h6><b>Age</b></h6>
-                                    <input name="age" type="number" class="form-control"
-                                           id="add-age"
-                                           placeholder="Age" required>
-                                    <div class="invalid-feedback">Обязательное поле для
-                                        заполнения
-                                    </div>
+                    </div>
+                    <div class="mt-3 mb-3 row g-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <h6><b>Email</b></h6>
+                                <input name="email" type="text" class="form-control"
+                                       id="add-email"
+                                       placeholder="E-mail" required>
+                                <div class="invalid-feedback">Обязательное поле для
+                                    заполнения
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-3 mb-3 row g-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <h6><b>Email</b></h6>
-                                    <input name="email" type="text" class="form-control"
-                                           id="add-email"
-                                           placeholder="E-mail" required>
-                                    <div class="invalid-feedback">Обязательное поле для
-                                        заполнения
-                                    </div>
+                    </div>
+                    <div class="mt-3 row g-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <h6><b>Password</b></h6>
+                                <input name="password" type="password" class="form-control"
+                                       id="add-password"
+                                       placeholder="Password" required>
+                                <div class="invalid-feedback">Обязательное поле для
+                                    заполнения
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-3 row g-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <h6><b>Password</b></h6>
-                                    <input name="password" type="password" class="form-control"
-                                           id="add-password"
-                                           placeholder="Password" required>
-                                    <div class="invalid-feedback">Обязательное поле для
-                                        заполнения
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="mt-3 row g-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <h6><b>Role</b></h6>
+                                <select class="form-select" name="user-roles"
+                                        id="add-user-roles"
+                                        style="padding: 0" multiple
+                                        required>
+                                    <option th:each="role : ${new_roles}"
+                                            th:value=" ${role.getId()}"
+                                            th:text="${role.getTitle()}"></option>
+                                </select>
                             </div>
                         </div>
-                        <div class="mt-3 row g-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <h6><b>Role</b></h6>
-                                    <select class="form-select" name="user-roles"
-                                            id="add-user-roles"
-                                            style="padding: 0" multiple
-                                            required>
-                                        <option th:each="role : ${new_roles}"
-                                                th:value=" ${role.getId()}"
-                                                th:text="${role.getTitle()}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-3 row g-2" id="button-wrapper">
-                            <button type="submit" class="btn btn-success" onclick="validateForm()">Add new user
-                            </button>
-                        </div>
-                    </form>
-                </td>
-            </tr>
-        </table>
-    </div>
+                    </div>
+                    <div class="mt-3 row g-2" id="button-wrapper">
+                        <button type="submit" class="btn btn-success" onclick="validateForm()">Add new user
+                        </button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
 </div>
