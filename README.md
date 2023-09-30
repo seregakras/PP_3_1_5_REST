@@ -1,7 +1,10 @@
 ### ___Задание:___
-1. Изменить страницы вашего приложения в соответствии со скриншотами, используя Bootstrap.
+1. Написать Rest-контроллеры для вашего приложения.
+2. Переписать вывод (заполнение) таблицы, модальных окон и т.д. на JS c помощью Fetch API, допускается использование JQuery.
+3. При любых изменениях данных страница приложения не должна перезагружаться!
 
-Ссылки: https://drive.google.com/file/d/1g32R1BmNASW5MRcLtwJWTn6ZROTMOVGJ/
-https://bootstrap-4.ru/docs/4.3.1/getting-started/introduction/
+Ссылки:
+https://learn.javascript.ru/fetch
+https://habr.com/ru/company/otus/blog/440046/
 
 * ADMIN CREDENTIALS: admin@admin.com/admin
