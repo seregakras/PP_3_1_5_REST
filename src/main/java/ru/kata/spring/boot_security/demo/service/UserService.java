@@ -29,15 +29,15 @@ public class UserService extends GenericService<User> {
     }
 
     @Override
-    public void create(User user) {
+    public User create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
-    public void update(User user) {
+    public User update(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @PostConstruct

@@ -33,6 +33,8 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeRequests()
+                .antMatchers("/rest/admin/**")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin((form) -> form.loginPage("/login")

@@ -16,7 +16,7 @@
                                 <div class="form-floating">
                                     <h6><b>ID</b></h6>
                                     <input name="id" type="text" class="form-control"
-                                           id="edit-modal-id" th:value="${user.getId()}" readonly>
+                                            th:value="${user.getId()}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -25,8 +25,7 @@
                                 <div class="form-floating">
                                     <h6><b>First name</b></h6>
                                     <input name="name" type="text" th:value="${user.getName()}"
-                                           class="form-control" id="edit-modal-name"
-                                           placeholder="Name">
+                                           class="form-control" placeholder="Name">
                                 </div>
                             </div>
                         </div>
@@ -36,8 +35,7 @@
                                     <h6><b>Last name</b></h6>
                                     <input name="lastName" type="text"
                                            th:value="${user.getLastName()}"
-                                           class="form-control" id="edit-modal-lastName"
-                                           placeholder="Last name">
+                                           class="form-control" placeholder="Last name">
                                 </div>
                             </div>
                         </div>
@@ -46,8 +44,7 @@
                                 <div class="form-floating">
                                     <h6><b>Age</b></h6>
                                     <input name="age" type="text" th:value="${user.getAge()}"
-                                           class="form-control" id="edit-modal-age"
-                                           placeholder="Age">
+                                           class="form-control" placeholder="Age">
                                 </div>
                             </div>
                         </div>
@@ -56,8 +53,7 @@
                                 <div class="form-floating">
                                     <h6><b>Email</b></h6>
                                     <input name="email" type="text" th:value="${user.getEmail()}"
-                                           class="form-control" id="edit-modal-email"
-                                           placeholder="Email"
+                                           class="form-control" placeholder="Email"
                                            readonly>
                                 </div>
                             </div>
@@ -66,8 +62,7 @@
                             <div class="col-md">
                                 <div class="form-floating">
                                     <h6><b>Password</b></h6>
-                                    <input name="password" type="password" class="form-control"
-                                           id="edit-modal-password" placeholder="Password">
+                                    <input name="password" type="password" class="form-control" placeholder="Password">
                                 </div>
                             </div>
                         </div>
@@ -75,9 +70,7 @@
                             <div class="col-md">
                                 <div class="form-floating">
                                     <h6><b>Role</b></h6>
-                                    <select class="form-select" name="user-roles"
-                                            id="edit-modal-user-roles"
-                                            style="padding: 0;" multiple required>
+                                    <select class="form-select" name="userRoles" style="padding: 0;" multiple required>
                                         <option th:each="role : ${new_roles}"
                                                 th:value=" ${role.getId()}"
                                                 th:text="${role.getTitle()}"></option>

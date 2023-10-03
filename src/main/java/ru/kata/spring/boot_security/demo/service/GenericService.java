@@ -20,12 +20,12 @@ public abstract class GenericService<T extends GenericModel> {
         return repository.findAll();
     }
 
-    public void create(T entity) {
-        repository.save(entity);
+    public T create(T entity) {
+        return repository.save(entity);
     }
 
-    public void update(T entity) {
-        repository.save(entity);
+    public T update(T entity) {
+        return repository.save(entity);
     }
 
     public T findById(long id) {

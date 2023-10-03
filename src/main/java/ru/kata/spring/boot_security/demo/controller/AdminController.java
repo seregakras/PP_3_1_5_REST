@@ -45,7 +45,7 @@ public class AdminController {
 
     @PostMapping("add-user")
     public String addUser(@ModelAttribute("add-user") User user,
-                          @RequestParam("user-roles") List<Long> roleIds,
+                          @RequestParam("userRoles") List<Long> roleIds,
                           Model model) {
         if (userService.findByEmail(user.getEmail()) != null) {
             model.addAttribute("message", "This email already exists!");
@@ -62,7 +62,7 @@ public class AdminController {
 
     @PostMapping("update-user")
     public String updateUser(@ModelAttribute("edit-user") User user,
-                             @RequestParam("user-roles") List<Long> roleIds) {
+                             @RequestParam("userRoles") List<Long> roleIds) {
         List<Role> roles = new ArrayList<>();
         for (Long roleId : roleIds) {
             roles.add(roleService.findById(roleId));
