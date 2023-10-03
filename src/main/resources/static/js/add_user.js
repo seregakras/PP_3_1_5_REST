@@ -10,7 +10,7 @@ function addUser() {
         age: document.getElementById("add-age").value,
         email: document.getElementById("add-email").value,
         password: document.getElementById("add-password").value,
-        roles: selected
+        roleIds: selected
     };
     let response = fetch('/rest/admin/add-user', {
         method: 'POST',
