@@ -58,7 +58,7 @@ button.nav-link {
 /*Содержимое вкладок (заголовок и таблица):*/
 
 td {
-   vertical-align: middle;
+    vertical-align: middle;
 }
 
 .tab-pane {
@@ -146,4 +146,8 @@ td {
 
 #modal-delete-content input, #modal-delete-content option {
     background-color: #c7c8c9;
+}
+
+select.form-select {
+    padding: 0 !important;
 }

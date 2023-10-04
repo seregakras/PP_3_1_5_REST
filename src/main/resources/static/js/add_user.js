@@ -1,5 +1,4 @@
-function addUser() {
-    alert("Adding user");
+async function addUser() {
     let select = document.getElementById("add-user-roles");
     let selected = Array.from(select.options)
         .filter(option => option.selected)
@@ -12,13 +11,11 @@ function addUser() {
         password: document.getElementById("add-password").value,
         roleIds: selected
     };
-    let response = fetch('/rest/admin/add-user', {
+    await fetch('/rest/admin/add-user', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(user)
     });
-    let result = response.json();
-    alert(result.message);
 }
