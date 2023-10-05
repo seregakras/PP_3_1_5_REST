@@ -5,7 +5,7 @@ async function deleteUser(event) {
     let userName = inputs[1].value;
     let isDelete = confirm("Delete user: " + userName);
     if (isDelete) {
-        await fetch('/rest/admin/delete-user/' + userId, {
+        await fetch('/rest/admin/' + userId, {
             method: 'DELETE',
         });
     }

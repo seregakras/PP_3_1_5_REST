@@ -11,7 +11,7 @@ async function addUser() {
         password: document.getElementById("add-password").value,
         roleIds: selected
     };
-    await fetch('/rest/admin/add-user', {
+    await fetch('/rest/admin/', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json;charset=utf-8'

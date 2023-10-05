@@ -22,15 +22,13 @@ public class RestAdminController {
         this.userMapper = userMapper;
     }
 
-    @RequestMapping(value = "/getAll",
-            method = RequestMethod.GET,
+    @RequestMapping(method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UserDTO>> allUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toDTOs(userService.getAll()));
     }
 
-    @RequestMapping(value = "/add-user",
-            method = RequestMethod.POST,
+    @RequestMapping(method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO newUser) {
@@ -38,8 +36,7 @@ public class RestAdminController {
                 .body(userMapper.toDTO(userService.create(userMapper.toEntity(newUser))));
     }
 
-    @RequestMapping(value = "/update-user",
-            method = RequestMethod.PUT,
+    @RequestMapping(method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO updateUser) {
@@ -47,7 +44,7 @@ public class RestAdminController {
                 .body(userMapper.toDTO(userService.create(userMapper.toEntity(updateUser))));
     }
 
-    @RequestMapping(value = "/delete-user/{id}",
+    @RequestMapping(value = "/{id}",
             method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable(value = "id") Long id) {
         userService.delete(id);

@@ -14,7 +14,7 @@ async function updateUser(event) {
         password: inputs[5].value,
         roleIds: selected
     };
-    await fetch('/rest/admin/update-user', {
+    await fetch('/rest/admin/', {
         method: 'PUT',
         headers: {
             'Content-type': 'application/json;charset=utf-8'
