@@ -10,7 +10,7 @@ async function addUser() {
         age: document.getElementById("add-age").value,
         email: document.getElementById("add-email").value,
         password: document.getElementById("add-password").value,
-        roleIds: selected
+        roleNames: selected
     };
     await fetch('/rest/admin/', {
         method: 'POST',
@@ -31,13 +31,17 @@ async function addUser() {
     let users = await response.json(); // читаем ответ в формате JSON
     let html = '';
     for (let key in users) {
+        let roles = '';
+        for (let index in users[key].roleNames) {
+            roles += users[key].roleNames[index] + ' ';
+        }
         html += '<tr>\n' +
             '<td>' + users[key].id + '</td>\n' +
             '<td>' + users[key].name + '</td>\n' +
             '<td>' + users[key].lastName + '</td>\n' +
             '<td>' + users[key].age + '</td>\n' +
             '<td>' + users[key].email + '</td>\n' +
-            '<td><div style="float: left; margin-right: 5px"><p>' + users[key].roleIds[0] + '</p></div></td>\n' +
+            '<td>' + roles + '</td>\n' +
             '<td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit' +
             +users[key].id + '">Edit</button>\n' +
             '<div th:insert="~{editUser :: edit-user}"></div></td>\n' +

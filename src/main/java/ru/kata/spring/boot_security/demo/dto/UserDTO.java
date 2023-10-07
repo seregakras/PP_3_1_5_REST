@@ -17,7 +17,7 @@ public class UserDTO extends GenericDTO {
     private int age;
     private String email;
     private String password;
-    private List<Long> roleIds;
+    private List<String> roleNames;
 
 
 }

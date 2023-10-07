@@ -83,7 +83,7 @@
                                 <select class="form-select" name="roleIds"
                                         id="add-user-roles" multiple required>
                                     <option th:each="role : ${new_roles}"
-                                            th:value=" ${role.getId()}"
+                                            th:value=" ${role.getTitle()}"
                                             th:text="${role.getTitle()}"></option>
                                 </select>
                             </div>

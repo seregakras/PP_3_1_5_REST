@@ -21,7 +21,7 @@ async function deleteUser(event) {
             '<td>' + users[key].lastName + '</td>\n' +
             '<td>' + users[key].age + '</td>\n' +
             '<td>' + users[key].email + '</td>\n' +
-            '<td><div style="float: left; margin-right: 5px"><p>' + users[key].roleIds[0] + '</p></div></td>\n' +
+            '<td><div style="float: left; margin-right: 5px"><p>' + users[key].roleNames[0] + '</p></div></td>\n' +
             '<td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit' +
             +users[key].id + '">Edit</button>\n' +
             '<div th:insert="~{editUser :: edit-user}"></div></td>\n' +
