@@ -42,7 +42,7 @@
                                 <th scope="col">Delete</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="users-content">
                             <tr th:each="user : ${users}">
                                 <td th:text="${user.getId()}"></td>
                                 <td th:text="${user.getName()}"></td>
