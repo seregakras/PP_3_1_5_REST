@@ -24,37 +24,32 @@ public class RestAdminController {
         this.userMapper = userMapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UserDTO>> allUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toDTOs(userService.getAll()));
     }
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.GET,
+    @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> getOne(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toDTO(userService.findById(id)));
     }
 
-    @RequestMapping(method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO newUser) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userMapper.toDTO(userService.create(userMapper.toEntity(newUser))));
     }
 
-    @RequestMapping(method = RequestMethod.PUT,
-            produces = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO updateUser) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(userMapper.toDTO(userService.create(userMapper.toEntity(updateUser))));
+                .body(userMapper.toDTO(userService.update(userMapper.toEntity(updateUser))));
     }
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable(value = "id") Long id) {
         userService.delete(id);
     }
