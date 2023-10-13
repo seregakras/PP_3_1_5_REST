@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td id="td-add-user-form">
-                <form method="POST" th:action="@{/admin/add-user}" object="add-user">
+                <form name="addUserForm" class="form-validated">
                     <div class="mt-3 row g-2">
                         <div class="col-md">
                             <div class="form-floating">
@@ -80,19 +80,20 @@
                         <div class="col-md">
                             <div class="form-floating">
                                 <h6><b>Role</b></h6>
-                                <select class="form-select" name="user-roles"
-                                        id="add-user-roles"
-                                        style="padding: 0" multiple
-                                        required>
+                                <select class="form-select form-control" name="roleIds"
+                                        id="add-user-roles" multiple required>
                                     <option th:each="role : ${new_roles}"
-                                            th:value=" ${role.getId()}"
+                                            th:value=" ${role.getTitle()}"
                                             th:text="${role.getTitle()}"></option>
                                 </select>
+                                <div class="invalid-feedback select">Обязательное поле для
+                                    заполнения
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-3 row g-2" id="button-wrapper">
-                        <button type="submit" class="btn btn-success" onclick="validateForm()">Add new user
+                        <button class="btn btn-success" id="add-user" onclick="addUser(event)">Add new user
                         </button>
                     </div>
                 </form>

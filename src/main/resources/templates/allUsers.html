@@ -11,32 +11,32 @@
 <div id="main-content" layout:fragment="content">
     <div class="d-flex align-items-start">
         <div class="nav flex-column nav-pills me-3" role="tablist" aria-orientation="vertical">
-            <button sec:authorize="#authentication.getName().equals('admin@admin.com')"
+            <button sec:authorize="hasRole('ADMIN')"
                     class="nav-link active" data-bs-toggle="pill" data-bs-target="#v-pills-admin" type="button"
                     role="tab" aria-controls="v-pills-admin" aria-selected="true">Admin
             </button>
-            <button sec:authorize="#authentication.getName().equals('admin@admin.com')"
+            <button sec:authorize="hasRole('ADMIN')"
                     class="nav-link" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button"
                     role="tab" aria-controls="v-pills-profile" aria-selected="false">User
             </button>
-            <button sec:authorize="!#authentication.getName().equals('admin@admin.com')"
+            <button sec:authorize="!hasRole('ADMIN')"
                     class="nav-link active" data-bs-toggle="pill" data-bs-target="#v-pills-profile-user" type="button"
                     role="tab" aria-controls="v-pills-profile" aria-selected="true">User
             </button>
         </div>
         <div class="tab-content">
-            <div sec:authorize="#authentication.getName().equals('admin@admin.com')"
+            <div sec:authorize="hasRole('ADMIN')"
                  class="tab-pane fade show active" id="v-pills-admin" role="tabpanel"
                  aria-labelledby="v-pills-admin-tab"
                  tabindex="0">
                 <div th:insert="~{admin :: admin}"></div>
             </div>
-            <div sec:authorize="#authentication.getName().equals('admin@admin.com')"
+            <div sec:authorize="hasRole('ADMIN')"
                  class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                  aria-labelledby="v-pills-profile-tab" tabindex="0">
                 <div th:insert="~{profile :: profile}"></div>
             </div>
-            <div sec:authorize="!#authentication.getName().equals('admin@admin.com')"
+            <div sec:authorize="!hasRole('ADMIN')"
                  class="tab-pane fade show active" id="v-pills-profile-user" role="tabpanel"
                  aria-labelledby="v-pills-profile-tab" tabindex="0">
                 <div th:insert="~{profile :: profile}"></div>
