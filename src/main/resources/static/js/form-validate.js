@@ -8,6 +8,10 @@ function formValidate() {
                 element.parentNode.querySelector('.invalid-feedback').classList.add('d-block');
                 throw false;
             }
+            if(!form.querySelector('.form-select').value) {
+                form.querySelector('.select').classList.add('d-block');
+                throw false;
+            }
         });
     } catch (e) {
         return  e;

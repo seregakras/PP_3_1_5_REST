@@ -29,7 +29,7 @@ async function createTableUsers() {
             '                        aria-label="Close"></button>\n' +
             '            </div>\n' +
             '            <div class="modal-body" id="modal-edit-content">\n' +
-            '                <form name="editUserForm">\n' +
+            '                <form name="editUserForm" class="form-validated">\n' +
             '                    <div class="mt-3 row g-2">\n' +
             '                        <div class="col-md">\n' +
             '                            <div class="form-floating">\n' +
@@ -45,6 +45,7 @@ async function createTableUsers() {
             '                                <h6><b>First name</b></h6>\n' +
             '                                <input name="name" type="text" value="' + users[key].name + '"\n' +
             '                                       class="form-control" placeholder="Name">\n' +
+            '                         <div class="invalid-feedback">Обязательное поле для заполнения</div>' +
             '                            </div>\n' +
             '                        </div>\n' +
             '                    </div>\n' +
@@ -54,6 +55,7 @@ async function createTableUsers() {
             '                                <h6><b>Last name</b></h6>\n' +
             '                                <input name="lastName" type="text" value="' + users[key].lastName + '"\n' +
             '                                       class="form-control" placeholder="Last name">\n' +
+            '                         <div class="invalid-feedback">Обязательное поле для заполнения</div>' +
             '                            </div>\n' +
             '                        </div>\n' +
             '                    </div>\n' +
@@ -63,6 +65,7 @@ async function createTableUsers() {
             '                                <h6><b>Age</b></h6>\n' +
             '                                <input name="age" type="text" value="' + users[key].age + '"\n' +
             '                                       class="form-control" placeholder="Age">\n' +
+            '                         <div class="invalid-feedback">Обязательное поле для заполнения</div>' +
             '                            </div>\n' +
             '                        </div>\n' +
             '                    </div>\n' +
@@ -81,6 +84,7 @@ async function createTableUsers() {
             '                                <h6><b>Password</b></h6>\n' +
             '                                <input name="password" type="password"\n' +
             '                                       class="form-control" placeholder="Password">\n' +
+            '                         <div class="invalid-feedback">Обязательное поле для заполнения</div>' +
             '                            </div>\n' +
             '                        </div>\n' +
             '                    </div>\n' +
@@ -88,10 +92,13 @@ async function createTableUsers() {
             '                        <div class="col-md">\n' +
             '                            <div class="form-floating">\n' +
             '                                <h6><b>Role</b></h6>\n' +
-            '                                <select class="form-select" name="roleNames" multiple required>\n' +
+            '                                <select class="form-select form-control" name="roleNames" multiple required>\n' +
             '                                    <option value="ADMIN">ADMIN</option>\n' +
             '                                    <option value="USER">USER</option>\n' +
             '                                </select>\n' +
+            '                                <div class="invalid-feedback select">' +
+            '                                        Обязательное поле для заполнения\n' +
+            '                                 </div>\n' +
             '                            </div>\n' +
             '                        </div>\n' +
             '                    </div>\n' +

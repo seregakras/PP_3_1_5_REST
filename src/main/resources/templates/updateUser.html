@@ -82,11 +82,14 @@
                             <div class="col-md">
                                 <div class="form-floating">
                                     <h6><b>Role</b></h6>
-                                    <select class="form-select" name="roleIds" multiple required>
+                                    <select class="form-select form-control" name="roleIds" multiple required>
                                         <option th:each="role : ${new_roles}"
                                                 th:value=" ${role.getTitle()}"
                                                 th:text="${role.getTitle()}"></option>
                                     </select>
+                                    <div class="invalid-feedback select">Обязательное поле для
+                                        заполнения
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +98,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 Close
                             </button>
-                            <button name="editButton" class="btn btn-primary" onclick="updateUser()">
+                            <button name="editButton" class="btn btn-primary" onclick="updateUser(event)">
                                 Edit
                             </button>
                         </div>
