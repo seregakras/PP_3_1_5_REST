@@ -31,7 +31,7 @@
         <dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
-            <version>3.1.0</version>
+            <version>3.2.1</version>
         </dependency>
 
         <dependency>
@@ -43,7 +43,7 @@
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>5.0.2</version>
+            <version>5.2.3</version>
         </dependency>
 
         <dependency>

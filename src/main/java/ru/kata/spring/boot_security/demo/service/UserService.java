@@ -25,7 +25,7 @@ public class UserService extends GenericService<User> {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findUserByEmail(email);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class UserService extends GenericService<User> {
         if (roleService.findByTitle("USER") == null) {
             roleService.create(new Role("USER", null));
         }
-        if (userRepository.findUserByName("admin") == null) {
+        if (userRepository.findUserByEmail("admin@admin.com") == null) {
             List<Role> rolesAdmin = new ArrayList<>(Arrays.asList(roleService.findByTitle("ADMIN"),
                     roleService.findByTitle("USER")));
             userRepository.save(new User("admin",

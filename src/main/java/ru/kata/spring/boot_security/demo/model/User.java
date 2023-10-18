@@ -29,7 +29,7 @@ public class User extends GenericModel {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             foreignKey = @ForeignKey(name = "FK_USERS_ROLES"),
