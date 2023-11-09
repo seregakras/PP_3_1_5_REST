@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
@@ -23,7 +24,7 @@ public class UserService extends GenericService<User> {
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
     }
-
+    @Transactional(readOnly = true)
     public User findByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }

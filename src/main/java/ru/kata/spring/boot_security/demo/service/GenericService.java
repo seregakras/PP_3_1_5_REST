@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.webjars.NotFoundException;
 import ru.kata.spring.boot_security.demo.model.GenericModel;
 import ru.kata.spring.boot_security.demo.repositories.GenericRepository;
@@ -16,6 +17,7 @@ public abstract class GenericService<T extends GenericModel> {
         this.repository = repository;
     }
 
+    @Transactional(readOnly = true)
     public List<T> getAll() {
         return repository.findAll();
     }
@@ -28,6 +30,7 @@ public abstract class GenericService<T extends GenericModel> {
         return repository.save(entity);
     }
 
+    @Transactional(readOnly = true)
     public T findById(long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Пользователь с таким id: " + id + " - не найден"));

@@ -49,6 +49,7 @@ public class RestAdminController {
                 .body(userMapper.toDTO(userService.update(userMapper.toEntity(updateUser))));
     }
 
+
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable(value = "id") Long id) {
         userService.delete(id);
